@@ -1,0 +1,63 @@
+9. MANUALE DI INSTALLAZIONE, CONFIGURAZIONE E COLLAUDO
+
+1 SPECIFICHE TECNICHE E PRE-REQUISITI
+Il presente applicativo web è stato implementato sfruttando esclusivamente linguaggi nativi (HTML5, CSS3, JavaScript per il front-end e PHP per il back-end), senza l'ausilio di framework esterni di terze parti.
+Per garantire il corretto funzionamento del sistema in ambiente locale, è necessario disporre di:
+
+-Un web server con modulo PHP abilitato (si consiglia la suite integrata XAMPP).
+-Un DBMS MySQL.
+-Versione dell'interprete PHP suggerita: 8.0 o successiva.
+
+2 GUIDA ALL'INSTALLAZIONE E DEPLOYMENT
+Fase 1: Posizionamento della Web App
+Decomprimere l'archivio compresso del progetto (7. associazione_micologica.zip).
+Trasferire l'intera cartella all'interno della directory root del proprio server locale (ad esempio, nella cartella htdocs se si utilizza XAMPP).
+
+Fase 2: Inizializzazione della Base di Dati
+Avviare i moduli Apache e MySQL dal pannello di controllo di XAMPP.
+Accedere all'interfaccia grafica phpMyAdmin (digitando http://localhost/phpmyadmin nel browser).
+Selezionare la funzione "Importa", caricare lo script SQL fornito in allegato (5. dump.sql) e confermare l'esecuzione.
+Questa procedura strutturerà automaticamente lo schema relazionale e inserirà un set di tuple (dati fittizi) indispensabili per la fase di valutazione.
+
+Fase 3: Parametri di Connessione (Configurazione)
+Tramite un editor di testo, aprire il file preposto all'interfacciamento con il database, situato nel percorso config/database.php.
+Verificare che le costanti di connessione siano allineate con quelle del proprio server locale.
+I valori di default previsti sono:
+
+Host: localhost
+Utente: root
+Password: (lasciare il campo vuoto)
+Nome DB: associazione_micologica
+
+Fase 4: Esecuzione del Sistema
+Aprire un browser web e collegarsi all'indirizzo: http://localhost/associazione_micologica/index.php.
+Verrà immediatamente renderizzata la Dashboard di atterraggio del portale.
+
+
+3 ACCOUNT PREDISPOSTI PER LA VALUTAZIONE
+Al fine di semplificare l'ispezione delle funzionalità dell'applicativo da parte del docente, il file SQL importato precedentemente contiene già i profili configurati per ogni livello di accesso previsto dal sistema Role-Based Access Control (RBAC).
+Dalla pagina di Login è possibile autenticarsi con le seguenti credenziali di test:
+
+[Ruolo 1: UTENTE ESTERNO - Base]
+Email: alfredo@esterno.it
+Password: pass123
+
+[Ruolo 2: UTENTE PREMIUM - Servizi a Pagamento]
+Email: chiara@premium.it
+Password: pass123
+
+[Ruolo 3: SOCIO CERCATORE - Operativo]
+Email: giovanni@socio.it
+Password: pass123
+
+[Ruolo 4: MICOLOGO ESPERTO - Validatore]
+Email: luigi@micologo.it
+Password: pass123
+
+[Ruolo 5: AMMINISTRATORE - Gestione Globale]
+Email: admin@micologia.it
+Password: pass123
+
+4 METODOLOGIA DI TESTING E DEBUGGING
+Per validare l'integrità del software e testare l'intera logica di business, si suggerisce di operare tramite un collaudo sequenziale (Black Box Testing).
+Effettuando l'accesso con ciascuno dei cinque ruoli sopra elencati, sarà possibile accertare la corretta separazione dei permessi (gestione delle sessioni), l'esattezza delle query di aggiornamento (come la registrazione di una raccolta da parte del Socio e la conseguente validazione del Micologo) e il corretto calcolo aggregato dei dati nella sezione Statistiche riservata all'Amministratore.
